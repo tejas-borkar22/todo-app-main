@@ -1,6 +1,84 @@
-@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"');
-/* Bootstrap CDN */
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"');  /* Bootstrap CDN */
+
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap');
+*{
+    margin :0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body{
     font-family: 'Josefin Sans', sans-serif;
+    --bg: hsl(235, 21%, 11%);
+    --fg:hsl(234, 39%, 85%);
+    --top-img:url('/images/bg-mobile-dark.jpg');
+    --tgl-btn:url('/images/icon-sun.svg');
+    --bg-todo: hsl(235, 24%, 19%);
+    background: var(--bg);
+    color: var(--fg);
+}
+
+.top-img{
+    width: 100%;
+    height: 230px;
+    background-size: cover;
+    background-image: var(--top-img);
+}
+/*Attributes for light theme . By default dark-theme will be there.*/
+.light{                         
+    --bg: hsl(236, 33%, 92%);        
+    --fg: hsl(237, 14%, 26%);
+    --top-img: url('/images/bg-mobile-light.jpg');
+    --tgl-btn: url('/images/icon-moon.svg');
+    --bg-todo: hsl(0, 0%, 98%);
+}
+main{
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    padding: 25px;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    color: white;
+    letter-spacing: 10px;
+    padding-top: 30px;
+}
+
+.tgl-btn{
+    background: var(--tgl-btn);
+    width: 30px;
+    height:30px;
+    background-size: cover;
+}
+
+.type-todo{
+    margin-top: 25px;
+    width: 100%;
+    background: var(--bg-todo);
+    padding: 10px;
+    height: 55px;
+    display: grid;
+    grid-template-columns: 10% auto;
+    align-items:center;
+}
+
+.circle{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border:1px solid hsl(237, 14%,26%) 
+}
+
+#todo-ip{
+    --fg-dark:hsl(233, 14%, 35%);
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    border: none;
+    color: var(--fg);
+    caret-color : hsl(220,98%,61%);
 }
