@@ -1,7 +1,10 @@
 const todoIp = document.querySelector("#todo-ip");
 const todosContainer = document.querySelector(".todos");
 const completedCount = document.querySelector(".itemsCompleted");
-let todoList = [];         //Used "todoList" intsead of "todos"
+let todoList;         //Used "todoList" intsead of "todos"
+
+// get item from localstorage
+let data = localStorage.getItem("TODO");                           
 
 todoIp.addEventListener("keyup",function(event){                      //To add the Todo's
     if(event.key == "Enter" || event.keyCode == 13){
@@ -10,11 +13,31 @@ todoIp.addEventListener("keyup",function(event){                      //To add t
         if(event.target.value !== ""){
             todoList.push({value:event.target.value, checked:false });   //Pushing values in an array
             newTodo(event.target.value);
+            localStorage.setItem('TODO',JSON.stringify(todoList));       // To update the todo-list in local storage
         }
         event.target.value = "";
         countCompleted();
     }
 });
+
+// check if data is not empty
+if(data){
+    todoList = JSON.parse(data);
+    id = todoList.length; // set the id to the last one in the list
+    loadList(todoList); // load the list to the user interface
+}else{
+    //else if data is not empty 
+    todoList = [];
+    id = 0;
+}
+
+// load items to the user's interface
+function loadList(array){
+    array.forEach(function(item){
+        newTodo(item.value);
+    });
+    countCompleted();
+}
 
 function newTodo(value){
     const todo = document.createElement("div");
@@ -37,7 +60,7 @@ function newTodo(value){
             todoCheckbox.checked = false;
             todoText.style.textDecoration = "none";
             todoCheckboxLabel.classList.remove("active");
-            obj.checked = false;
+            obj.checked = false;            
             countCompleted();
             // console.log(todoList);
         }
@@ -57,7 +80,9 @@ function newTodo(value){
     todoCross.addEventListener("click",function(event){          //Function For "X" to remove item from list   
         event.target.parentElement.remove();
         todoList = todoList.filter((t) => t.value !== value);   //To remove the item from todo-List
-        countCompleted();                 
+        localStorage.removeItem(event.target);                  // To Delete the item from todo-List saved in local storage
+        localStorage.setItem('TODO',JSON.stringify(todoList));  // To update the todo-list in local storage
+        countCompleted();               
     });
 
     todo.classList.add("todo");
@@ -81,10 +106,16 @@ function countCompleted(){                    //Function for how many items left
 function changeTheme(){
     document.body.classList.toggle("light");       //To change the theme/mode
 }
+
 function clearCompleted(){
     document.querySelectorAll(".todo").forEach((todo) => {
         if(todo.querySelector("input").checked)
-        todo.remove();
+        {
+            todoList = todoList.filter((t) => t.checked == false);       
+            todo.remove();                                              // Remove todo where input is checked
+            localStorage.removeItem(todo);                              
+            localStorage.setItem('TODO',JSON.stringify(todoList));
+        }
     });
     countCompleted();
 }

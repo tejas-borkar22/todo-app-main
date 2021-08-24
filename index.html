@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="styles/styles.css">
 
-  <title>Task Master app</title>
+  <title>Home: Task Master app</title>
+  <link rel="shortcut icon" type="image/png" sizes="52x52" href="images/to-do-favicon.svg"/>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
@@ -20,7 +19,7 @@
     <main>
       <header class="header">
         <h1 style="font-weight:700;">TODO</h1>
-        <div onclick="changeTheme()" class="tgl-btn"></div>
+        <div onclick="changeTheme()" class="tgl-btn" style="cursor: pointer;"></div>
       </header>
 
       <div class="type-todo">
@@ -31,11 +30,11 @@
       <div class="todos"></div>
       <div class="remarks">
         <div class="itemsCompleted"></div>
-        <div onclick="clearCompleted()">Clear Completed</div>
+        <div style="cursor: pointer;" onclick="clearCompleted()">Clear Completed</div>
         <div class="filters">
-          <div onclick="showAll()" >All</div>
-          <div onclick="filterActive()" >Active</div>
-          <div onclick="filterCompleted()" >Completed</div>
+          <div style="cursor: pointer;" onclick="showAll()" >All</div>
+          <div style="cursor: pointer;" onclick="filterActive()" >Active</div>
+          <div style="cursor: pointer;" onclick="filterCompleted()" >Completed</div>
         </div>
       </div>
     </main>

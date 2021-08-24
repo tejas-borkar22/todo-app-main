@@ -120,7 +120,7 @@ main{
     cursor: grab;
 }
 .light .todo p {
-  font-weight: 600;
+  font-weight: 500;
   color: rgb(27, 26, 26);
   cursor: grab;
 }
